@@ -2,6 +2,8 @@
 # 3.24.1 is also bundled in CLion as of 2023
 cmake_minimum_required(VERSION 3.24.1)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # This tells cmake we have goodies in the /cmake folder
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include (PamplejuceVersion)
@@ -13,7 +15,7 @@ include(PamplejuceMacOS)
 # This is the internal name of the project and the name of JUCE's shared code target
 # Note: This cannot have spaces (it may be 2024, but you can't have it all!)
 # Worry not, JUCE's PRODUCT_NAME can have spaces (and is what DAWs display)
-set(PROJECT_NAME "Pamplejuce")
+set(PROJECT_NAME "Cow")
 
 # Worry not, JUCE's PRODUCT_NAME can have spaces (and is what DAWs will display)
 # You can also just have it be the same thing as PROJECT_NAME
@@ -57,8 +59,8 @@ juce_add_plugin("${PROJECT_NAME}"
     ICON_BIG "${CMAKE_CURRENT_SOURCE_DIR}/packaging/icon.png"
 
     # Change me!
-    COMPANY_NAME "${COMPANY_NAME}"
-    BUNDLE_ID "${BUNDLE_ID}"
+    COMPANY_NAME "${Goat}"
+    BUNDLE_ID "${CowSay}"
 
     # On MacOS, plugin is copied to ~/Users/yourname/Library/Audio/Plug-Ins/
     COPY_PLUGIN_AFTER_BUILD TRUE
@@ -66,7 +68,7 @@ juce_add_plugin("${PROJECT_NAME}"
     # Change me!
     # A four-character plugin id
     # First character MUST be uppercase for AU formats
-    PLUGIN_MANUFACTURER_CODE Pamp
+    PLUGIN_MANUFACTURER_CODE Goat
 
     # Change me!
     # A unique four-character plugin id
@@ -78,7 +80,7 @@ juce_add_plugin("${PROJECT_NAME}"
     # This is how it's listed in the DAW
     # This can be different from PROJECT_NAME and can have spaces!
     # You might want to use v${MAJOR_VERSION} here once you go to v2...
-    PRODUCT_NAME "${PRODUCT_NAME}")
+    PRODUCT_NAME "${Cow}")
 
 # This lets us use our code in both the JUCE targets and our Test target
 # Without running into ODR violations

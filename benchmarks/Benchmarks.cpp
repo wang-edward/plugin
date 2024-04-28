@@ -2,10 +2,9 @@
 #include "catch2/benchmark/catch_benchmark_all.hpp"
 #include "catch2/catch_test_macros.hpp"
 
-TEST_CASE ("Boot performance")
-{
+TEST_CASE ("Boot performance") {
     BENCHMARK_ADVANCED ("Processor constructor")
-    (Catch::Benchmark::Chronometer meter)
+        (Catch::Benchmark::Chronometer meter)
     {
         auto gui = juce::ScopedJuceInitialiser_GUI {};
         std::vector<Catch::Benchmark::storage_for<PluginProcessor>> storage (size_t (meter.runs()));
@@ -13,17 +12,17 @@ TEST_CASE ("Boot performance")
     };
 
     BENCHMARK_ADVANCED ("Processor destructor")
-    (Catch::Benchmark::Chronometer meter)
+        (Catch::Benchmark::Chronometer meter)
     {
         auto gui = juce::ScopedJuceInitialiser_GUI {};
         std::vector<Catch::Benchmark::destructable_object<PluginProcessor>> storage (size_t (meter.runs()));
         for (auto& s : storage)
-            s.construct();
+        s.construct();
         meter.measure ([&] (int i) { storage[(size_t) i].destruct(); });
     };
 
     BENCHMARK_ADVANCED ("Editor open and close")
-    (Catch::Benchmark::Chronometer meter)
+        (Catch::Benchmark::Chronometer meter)
     {
         auto gui = juce::ScopedJuceInitialiser_GUI {};
 
